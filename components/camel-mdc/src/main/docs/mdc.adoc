@@ -17,7 +17,31 @@ When you enable the MDC Service provided in this component, you will instruct yo
 
 == Usage
 
-If you want to use the feature, you need to include the `camel-mdc` dependency in your `pom.xml` and configure it with the parameters in the `application.properties` configuration file (at least set `camel.mdc.enabled=true`).
+=== Spring Boot
+
+Add the follwing dependency to your `pom.xml`.
+----
+<dependency>
+    <groupId>org.apache.camel.springboot</groupId>
+    <artifactId>camel-mdc-starter</artifactId>
+</dependency>
+----
+
+Now, configure it with the parameters in the `application.properties` configuration file (at least set `camel.mdc.enabled=true`).
+
+=== Plain Camel
+
+Add the follwing dependency to your `pom.xml`.
+----
+<dependency>
+    <groupId>org.apache.camel</groupId>
+    <artifactId>camel-mdc</artifactId>
+</dependency>
+----
+
+If you want to use the feature, you need to create and confige an instance of the `MDCService` and add it to your CamelContext via `service.init(context)`.
+
+== Explaination
 
 NOTE: don't set legacy MDC via `context.setUseMDCLogging(true)` on `CamelContext` at the same time. Instead, only use `camel-mdc`.
 
@@ -70,6 +94,6 @@ The configuration properties for the MDC component are:
 |=======================================================================
 |Option |Default |Description
 |`camel.mdc.enabled`| false | Enable the MDC logging.
-|`camel.mdc.customHeaders` |  | Provide the headers you would like to use in the logging. Use `*` value to include all available headers.
-|`camel.mdc.customProperties` |  | Provide the properties you would like to use in the logging. Use `*` value to include all available properties.
+|`camel.mdc.customExchangeHeaders` |  | Provide the headers you would like to use in the logging. Use `*` value to include all available headers.
+|`camel.mdc.customExchangeProperties` |  | Provide the properties you would like to use in the logging. Use `*` value to include all available properties.
 |=======================================================================
